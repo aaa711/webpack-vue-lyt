@@ -6,3 +6,4 @@ npm-debug.log
 output
 node_modules
 server/static
+dist
