@@ -1,42 +1,70 @@
 <template>
   <div id="app">
-    <h1></h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat1111</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+      <index-header :title="title"></index-header>
+      <transition name="fade" mode="out-in">
+          <router-view class="view"></router-view>
+       </transition>
+       <index-item></index-item>
   </div>
 </template>
 
 <script>
+import IndexItem from '@/components/Index/IndexItems.vue'
+import IndexHeader from '@/components/Index/Header.vue'
 export default {
   name: 'app',
+  components: {
+     IndexItem,
+     IndexHeader
+  },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to lyt Vue.js App'
+    }
+  },
+  computed: {
+    title() {
+      console.log(this.$route.path.split('/')[2])
+      switch (this.$route.path.split('/')[2]) {
+            case '':
+              return "微信"
+            case 'index':
+              return "微信"
+            case 'webchat':
+              return "微信"
+            case 'friends':
+              return "通讯录"
+            case 'finds':
+              return "发现"
+            case 'profile':
+              return "我的个人资料"
+        }
     }
   }
 }
 </script>
 
 <style lang="scss">
+html,body {
+  height: 100%;
+  margin: 0;
+}
+a {
+  outline: none;
+  text-decoration: none;
+}
+a.active {
+  text-decoration: none;
+}
 #app {
+  margin:0;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  height: 100%;
   color: #2c3e50;
-  margin-top: 60px;
+  font-size: 40px;
 }
 
 h1, h2 {
